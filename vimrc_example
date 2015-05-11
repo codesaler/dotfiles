@@ -1,0 +1,211 @@
+set nu
+set history=500
+set autoread
+set grepprg=ack
+set wildmenu
+
+" Vundle
+set nocompatible               " be iMproved
+filetype off                   " required!
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle
+" required! 
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+
+" edited
+Plugin 'matchit.zip'
+Plugin 'mattn/emmet-vim'
+
+" theme
+Plugin 'molokai'
+" project navigation
+Plugin 'mru.vim'
+Plugin 'The-NERD-tree'
+Plugin 'ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
+
+" coding
+Plugin 'surround.vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'snipmate-snippets'
+Plugin 'fugitive.vim'
+Plugin 'rails.vim'
+Plugin 'xml.vim'
+Plugin 'The-NERD-Commenter'
+Plugin 'maksimr/vim-jsbeautify'
+
+"neocomplete
+Plugin 'Shougo/neocomplcache'
+Plugin 'shougo/neosnippet'
+
+"language
+Plugin 'groenewege/vim-less'
+Plugin 'slim-template/vim-slim.git'
+
+" UI Improve
+Plugin 'bling/vim-airline'
+" Mac Dash.app
+Plugin 'rizzatti/funcoo.vim'
+Plugin 'rizzatti/dash.vim'
+
+call vundle#end()
+
+" After Vundle
+filetype plugin indent on
+
+"encoding setting
+set enc=utf-8
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312
+set helplang=cn
+set encoding=utf-8
+
+""""""""""""""""
+" set fonts
+""""""""""""""""
+if has("gui_running")
+	"set guifont=Monaco:h13
+	set guifont=Anonymous\ Pro:h14
+endif
+
+"set backup
+set backupdir-=.
+set backupdir^=~/tmp,/tmp
+
+set backspace=indent,eol,start
+"indent mode
+set autoindent
+set linespace=2
+"seach history length
+set history=50
+"show line and column number
+set ruler
+"display command
+set showcmd
+"searching immediatly
+set incsearch
+
+""""""""""""""""""""""
+" Mappings
+""""""""""""""""""""""
+vnoremap p <Esc>:let current_reg=@"<CR>gvs<C-R>=current_reg<CR><Esc>
+
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+
+autocmd FileType text setlocal textwidth=80
+""""""""""""""""""""""""""
+" About Tab
+""""""""""""""""""""""""""
+set noexpandtab "convert tab to space
+set tabstop=4 "a tab equals 4 space"
+set shiftwidth=4
+set softtabstop=4
+
+autocmd FileType jade setlocal tabstop=2
+autocmd FileType yaml setlocal tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2
+autocmd FileType yaml setlocal softtabstop=2
+autocmd FileType ruby setlocal tabstop=2
+autocmd FileType ruby setlocal shiftwidth=2
+autocmd FileType ruby setlocal softtabstop=2
+"autocmd FileType jade setlocal shiftwidth=2
+"autocmd FileType jade setlocal softtabstop=2
+"autocmd FileType ruby set tabstop=2
+
+""""""""""""""""""""""""""
+" Move between different window
+""""""""""""""""""""""""""
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+""""""""""""""""""""""""""
+" color theme
+""""""""""""""""""""""""""
+set t_Co=256
+let g:molokai_original = 1
+color molokai
+
+
+" Aireline 
+set laststatus=2
+set ttimeoutlen=50
+
+"let g:airline_symbols = {}
+"let g:airline#extensions#whitespace#enabled=0
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
+let g:airline_enable_fugitive=1
+let g:airline_section_b='%{fugitive#statusline()}'
+let g:airline_section_c="%t"
+let g:airline_section_x="%y"
+let g:airline_section_y='BN: %{bufnr("%")}'
+
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '◀'
+"let g:airline_symbols.linenr = 'L'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.whitespace = 'Ξ'
+
+"""""""""""""""""""""""""
+" NERDTree, file explore
+"""""""""""""""""""""""""
+map <F8> :NERDTree<CR>
+
+" MRU
+map <F2> :MRU<cr>
+let MRU_Max_Entries=1000
+let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*' 
+
+let mapleader = ","
+" fast reloading .vimrc
+map <silent> <leader>ss :source ~/.vimrc<cr>
+" fast editing .vimrc
+map <silent> <leader>ee :e ~/.vimrc<cr>
+" when .vimrc is edited, reload it
+autocmd! bufwritepost .vimrc source ~/Dropbox/.vimrc
+
+"""""""""""""""""""""""""
+" setting ctrlp plugin
+"""""""""""""""""""""""""
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_Store,*~     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+set wildignore+=.classpath,.project,.settings/*,*.jar,*.classes,.idea,lib/,libs/,bin/ " java
+set wildignore+=*.log,*.log.*
+set wildignore+=.git,.hg,.svn "ignore git
+set wildignore+=node_modules/ "node.js
+set wildignore+=*/build/,target/*,compressed/*,out/* "complie folder
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" Dash.app for mac os
+let mapleader = "?"
+nmap <silent> <leader>d <Plug>DashSearch
+let mapleader = "/"
+
+" startup neocomplete 
+let g:neocomplcache_enable_at_startup = 1
+" matchit
+
+let g:user_emmet_leader_key='<C-z>'
+
+" less
+" nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
+" Ack or Ag
+let g:aghighlight=1
+let g:agprg="ag --column --smart-case"
+let g:ackprg = 'ag --nogroup --nocolor --column'
