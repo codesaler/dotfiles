@@ -3,12 +3,14 @@
 " :PluginInstall 
 " or vim +PluginInstall +qall
 
+colorscheme elflord
 set number
 set shiftwidth=4
 set tabstop=4
+set softtabstop=4
 set textwidth=80
 set smarttab
-set expandtab
+set noexpandtab
 set smartindent
 set ruler
 set relativenumber
