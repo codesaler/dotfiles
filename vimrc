@@ -39,12 +39,17 @@ Plugin 'git://github.com/Lokaltog/vim-easymotion'
 Plugin 'git://github.com/bling/vim-airline'
 Plugin 'git://github.com/scrooloose/syntastic'
 
+" php plugin
+Plugin 'php.vim'
+Plugin 'git://github.com/joonty/vim-phpqa'
+
 call vundle#end()
 filetype plugin indent on
 map <C-n> :NERDTreeToggle<CR>
+map <C-l> :!php -l %<CR>
 map <C-x> :qa<CR>
 let g:EasyMotion_leader_key=','
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#left_sep=' '
-let g:airline#extensions#tabline#left_alt_sep='|'
-let g:airline_theme="jellybeans"
+"let g:airline#extensions#tabline#enabled=1
+"let g:airline#extensions#tabline#left_sep=' '
+"let g:airline#extensions#tabline#left_alt_sep='|'
+"let g:airline_theme="jellybeans"
